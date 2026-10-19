@@ -6,13 +6,13 @@ void affichage ()
     M5.Lcd.fillTriangle( 20,30,5,50,20,70, WHITE);
     M5.Lcd.fillTriangle( 40,30,25,50,40,70, WHITE);
     M5.Lcd.fillTriangle( 60,30,45,50,60,70, WHITE);
-    M5.Lcd.fillRect (100, 10, 170, 80, 0x7830);
-    M5.Lcd.drawRect (100, 10, 170, 80, WHITE);
+    M5.Lcd.fillRoundRect (100, 10, 170, 80, 8, 0x7830);  // boite gris arrendondie
+    M5.Lcd.drawRoundRect (100, 10, 170, 80, 8, WHITE);    // contour blanc arroundi
     M5.Lcd.drawLine (70, 20, 100, 18, WHITE);
     M5.Lcd.drawLine (70, 80, 100, 82, WHITE);
     M5.Lcd.drawLine (270, 82, 300, 80,WHITE);
     M5.Lcd.drawLine (270, 18, 300, 20,WHITE);
-    M5.Lcd.fillRect (100, 19, 170, 62,0x7830);
+    // fond interieur supprimé : la boite arrondie 0x7830 suffit
     M5.Lcd.drawLine (120, 50, 140, 50,WHITE);
     M5.Lcd.fillCircle (120, 35, 15,WHITE);
     M5.Lcd.fillCircle (120, 65, 15,WHITE);
