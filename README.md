@@ -1,6 +1,10 @@
+# Ventilateur de chauffage
+
 This is a controller for a fan heating system. 
 
 Controller : M5 Stack.
+
+![Ecran M5Stack en fonctionnement](photos/ecran_m5stack.jpg)
 
 First, there is a chimney (wood fireplace) heating the house.
 
