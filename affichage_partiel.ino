@@ -11,33 +11,7 @@ void affichage_partiel ()
     oldauto_ = auto_;
   }
    // AFFICHAGE ECRAN   ///////////////////
-   // TRIANGLES
-   if (Puissance == 0) {     // OFF
-    M5.Lcd.fillTriangle( 20,30,5,50,20,70, 0x7800);  // triangle gauche
-    M5.Lcd.drawTriangle( 20,30,5,50,20,70, WHITE);  // triangle gauche
-    M5.Lcd.fillTriangle( 40,30,25,50,40,70, 0x7800);  // triangle centre
-    M5.Lcd.drawTriangle( 40,30,25,50,40,70, WHITE);  // triangle centre
-    M5.Lcd.fillTriangle( 60,30,45,50,60,70, 0x7800);  // triangle a droite
-    M5.Lcd.drawTriangle( 60,30,45,50,60,70, WHITE);  // triangle a droite
-   }
-      if (Puissance == 1) {   // LOW
-    M5.Lcd.fillTriangle( 20,30,5,50,20,70, 0x7800);  // triangle gauche
-    M5.Lcd.drawTriangle( 20,30,5,50,20,70, WHITE);  // triangle gauche
-    M5.Lcd.fillTriangle( 40,30,25,50,40,70, 0x7800);  // triangle centre
-    M5.Lcd.drawTriangle( 40,30,25,50,40,70, WHITE);  // triangle centre
-    M5.Lcd.fillTriangle( 60,30,45,50,60,70, WHITE);  // triangle a droite
-   }
-      if (Puissance == 2) {   // MED
-    M5.Lcd.fillTriangle( 20,30,5,50,20,70, 0x7800);  // triangle gauche
-    M5.Lcd.drawTriangle( 20,30,5,50,20,70, WHITE);  // triangle gauche
-    M5.Lcd.fillTriangle( 40,30,25,50,40,70, WHITE);  // triangle centre
-    M5.Lcd.fillTriangle( 60,30,45,50,60,70, WHITE);  // triangle a droite
-   }
-      if (Puissance == 3) {   // MAX
-    M5.Lcd.fillTriangle( 20,30,5,50,20,70, WHITE);  // triangle gauche
-    M5.Lcd.fillTriangle( 40,30,25,50,40,70, WHITE);  // triangle centre
-    M5.Lcd.fillTriangle( 60,30,45,50,60,70, WHITE);  // triangle a droite
-   }
+   // TRIANGLES : dessines par animation_triangles () dans la boucle
    // PARTIE DU HAUT
      M5.Lcd.fillRect (140, 21, 120, 60, 0xc36e50);
    // M5.Lcd.drawRoundRect (140, 21, 120, 60,5,WHITE);

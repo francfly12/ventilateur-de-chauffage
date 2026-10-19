@@ -58,6 +58,9 @@ bool veille = false ;  // true si en veille
 unsigned long  T   ;           // for counting millis
 unsigned long NewMillis, temps1; 
 unsigned long temps2 ; // pour compter la mise en veille 
+unsigned long tempsAnim = 0;  // reference de temps pour l animation des triangles
+int etapeAnim = 0;           // etape courante de l animation (0 a 2)
+int oldEtapeAnim = -1;       // pour redessiner seulement si l etape change
                     // doivent etre des "unsigned long"
 int outVal = 10;  // puissance demandée, de 0 à 100
 
@@ -97,6 +100,8 @@ void setup() {
 void loop() {
   // AFFICHAGE PARTIEL
   affichage_partiel ();
+  // ANIMATION DES TRIANGLES
+  if (!veille && Puissance > 0) {animation_triangles ();}
   // TEMPERATURE TOUTE LES 10 SECONDES :
   temps1 = millis();
   if ((temps1 - NewMillis) >= 10000) {NewMillis = temps1; Every10s();}  // a faire toute les 10 secondes
@@ -170,4 +175,28 @@ void choix () {
 
      if (DeltaT < 2)  {Puissance = 1 ; return ;} ;                 //  tres peu de chauffe
      if (DeltaT < 1)  {Puissance = 0 ; return ;} ;                 //  trop peu de chauffe
+}
+
+//  ANIMATION DES TROIS TRIANGLES :
+//  un cycle dure 3 s (P=1), 2 s (P=2), 1 s (P=3)
+//  chaque cycle allume successivement le triangle droite, milieu, gauche
+void animation_triangles () {
+  if (Puissance == 0) return;                       // rien a animer
+  unsigned long dureeCycle = (Puissance == 1) ? 3000UL : (Puissance == 2) ? 2000UL : 1000UL;
+  unsigned long maintenant = millis();
+  if ((maintenant - tempsAnim) >= dureeCycle) {tempsAnim = maintenant;}  // debut d un nouveau cycle
+  etapeAnim = ((maintenant - tempsAnim) * 3 / dureeCycle);               // 0, 1 ou 2
+  if (etapeAnim == oldEtapeAnim) return;          // pas de changement, rien a redessiner
+  oldEtapeAnim = etapeAnim;
+  // eteindre les trois triangles (contour blanc sur fond brun)
+  M5.Lcd.fillTriangle( 20,30,5,50,20,70, 0x7800);
+  M5.Lcd.drawTriangle( 20,30,5,50,20,70, WHITE);
+  M5.Lcd.fillTriangle( 40,30,25,50,40,70, 0x7800);
+  M5.Lcd.drawTriangle( 40,30,25,50,40,70, WHITE);
+  M5.Lcd.fillTriangle( 60,30,45,50,60,70, 0x7800);
+  M5.Lcd.drawTriangle( 60,30,45,50,60,70, WHITE);
+  // allumer le triangle de l etape courante
+  if (etapeAnim == 0) {M5.Lcd.fillTriangle( 60,30,45,50,60,70, WHITE);}  // droite
+  if (etapeAnim == 1) {M5.Lcd.fillTriangle( 40,30,25,50,40,70, WHITE);}  // milieu
+  if (etapeAnim == 2) {M5.Lcd.fillTriangle( 20,30,5,50,20,70, WHITE);}  // gauche
 }
