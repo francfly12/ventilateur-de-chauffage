@@ -12,6 +12,8 @@ Then, heat is collected on top by a collector tube and a fan sends the hot air t
 This is a heat exchanger, no connection with the fumes.
 Choose a metallic AC fan, resistant to heat.
 
+![Ventilateur en métal](photos/ecran_m5stack.jpg)
+
 There is a temperature sensor in the inlet part of the collector tube. (T°in)
 
 There is another temperature sensor in the bedroom.(T°out)
